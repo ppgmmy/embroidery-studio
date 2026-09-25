@@ -312,7 +312,8 @@ export const embroideryMotifs: EmbroideryMotif[] = [
     name: "迷你約3:16",
     en: "Mini John 3:16",
     vibe: "掌心咁細：海、耶穌、約翰、白鴿一齊繡，下面只標約3:16",
-    faith: "約翰福音 3:16",
+    faith:
+      "約翰福音 3:16 — 神愛世人，甚至將他的獨生子賜給他們，叫一切信他的，不至滅亡，反得永生。",
     bestOn: ["迷你繡棚", "布章", "書籤", "洗禮禮物"],
     priceAddonHkd: 60,
     tier: "mini",
@@ -324,7 +325,8 @@ export const embroideryMotifs: EmbroideryMotif[] = [
     name: "迷你平靜海",
     en: "Mini Calm Sea",
     vibe: "小船同海浪鋪滿線，下面只標可4:39",
-    faith: "馬可福音 4:39",
+    faith:
+      "馬可福音 4:39 — 耶穌醒了，斥責風，向海說：「住了吧！靜了吧！」風就止住，大大地平靜了。",
     bestOn: ["迷你繡棚", "布章", "袋角", "關懷禮物"],
     priceAddonHkd: 50,
     tier: "mini",
@@ -336,7 +338,7 @@ export const embroideryMotifs: EmbroideryMotif[] = [
     name: "迷你好牧人",
     en: "Mini Shepherd",
     vibe: "一牧人、一隻羊，細細一幅，下面只標詩23:1",
-    faith: "詩篇 23:1",
+    faith: "詩篇 23:1 — 耶和華是我的牧者，我必不致缺乏。",
     bestOn: ["迷你繡棚", "布章", "手帕角", "關懷禮物"],
     priceAddonHkd: 50,
     tier: "mini",

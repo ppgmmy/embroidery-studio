@@ -165,7 +165,7 @@ export default function EmbroideryPage() {
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-ash">
               掌心咁大，一個小景加一個短編號。約3:16
-              係海、耶穌、約翰同白鴿；下面只繡編號，唔繡成段經文。
+              係海、耶穌、約翰同白鴿。約翰福音 3:16：神愛世人，甚至將他的獨生子賜給他們，叫一切信他的，不至滅亡，反得永生。
             </p>
             <div className="relative mx-auto mt-8 aspect-square max-w-xl overflow-hidden bg-linen">
               <Image
