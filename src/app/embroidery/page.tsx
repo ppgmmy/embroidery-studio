@@ -8,10 +8,12 @@ import { Container, PageHeader, Section } from "@/components/ui/Section";
 import { getEmbroideryProducts } from "@/data/catalog";
 import {
   getBotanicalMotifs,
+  getMiniMotifs,
   getPatternMotifs,
   getSimpleMotifs,
   getWordMotifs,
   motifOnProducts,
+  motifTierLabel,
   type EmbroideryMotif,
 } from "@/data/motifs";
 
@@ -42,13 +44,9 @@ function MotifGrid({ motifs }: { motifs: EmbroideryMotif[] }) {
           ) : null}
           <div className="flex items-baseline justify-between gap-2">
             <h3 className="font-display text-lg text-pine">{motif.name}</h3>
-            {motif.tier !== "simple" ? (
+            {motifTierLabel(motif.tier) ? (
               <span className="shrink-0 text-[10px] tracking-widest text-gold uppercase">
-                {motif.tier === "botanical"
-                  ? "Botanical"
-                  : motif.tier === "word"
-                    ? "Word"
-                    : "Pattern"}
+                {motifTierLabel(motif.tier)}
               </span>
             ) : null}
           </div>
@@ -79,16 +77,19 @@ export default function EmbroideryPage() {
       p.id.startsWith("motif") ||
       p.id.startsWith("word-") ||
       p.id === "cup-sleeve" ||
-      p.id === "drink-motif-pack",
+      p.id === "drink-motif-pack" ||
+      p.id.startsWith("mini-"),
   );
   const otherProducts = items.filter(
     (p) =>
       !p.id.startsWith("motif") &&
       !p.id.startsWith("word-") &&
+      !p.id.startsWith("mini-") &&
       p.id !== "cup-sleeve" &&
       p.id !== "drink-motif-pack",
   );
   const simpleMotifs = getSimpleMotifs();
+  const miniMotifs = getMiniMotifs();
   const patternMotifs = getPatternMotifs();
   const botanicalMotifs = getBotanicalMotifs();
   const wordMotifs = getWordMotifs();
@@ -156,6 +157,26 @@ export default function EmbroideryPage() {
               成個公仔都係線鋪滿——緞面針填色、結粒做細節。畫風保持圓潤；可跟教學課一手練習。
             </p>
             <MotifGrid motifs={simpleMotifs} />
+          </div>
+
+          <div className="mt-20">
+            <h2 className="font-display text-2xl text-pine md:text-3xl">
+              迷你經文刺繡
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-ash">
+              掌心咁大，一個小景加一個短編號。約3:16
+              係海、耶穌、約翰同白鴿；下面只繡編號，唔繡成段經文。
+            </p>
+            <div className="relative mx-auto mt-8 aspect-square max-w-xl overflow-hidden bg-linen">
+              <Image
+                src="/products/motif-mini-john316.png"
+                alt="迷你刺繡：海、耶穌、約翰、白鴿，下面約3:16"
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 576px"
+              />
+            </div>
+            <MotifGrid motifs={miniMotifs} />
           </div>
 
           <div className="mt-20">

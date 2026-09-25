@@ -23,10 +23,13 @@ export type MotifId =
   | "word-joy"
   | "word-hope"
   | "word-love"
-  | "word-faith";
+  | "word-faith"
+  | "mini-john316"
+  | "mini-calm"
+  | "mini-shepherd";
 
-/** simple=單個公仔；pattern=故事場景；botanical=花草針法；word=書法靚字 */
-export type MotifTier = "simple" | "pattern" | "botanical" | "word";
+/** simple=單個公仔；pattern=故事場景；botanical=花草針法；word=書法靚字；mini=迷你經文小景 */
+export type MotifTier = "simple" | "pattern" | "botanical" | "word" | "mini";
 
 export interface EmbroideryMotif {
   id: MotifId;
@@ -304,6 +307,42 @@ export const embroideryMotifs: EmbroideryMotif[] = [
     stitchHint: "satin + stem stitch",
     image: "/products/word-faith.png",
   },
+  {
+    id: "mini-john316",
+    name: "迷你約3:16",
+    en: "Mini John 3:16",
+    vibe: "掌心咁細：海、耶穌、約翰、白鴿一齊繡，下面只標約3:16",
+    faith: "約翰福音 3:16",
+    bestOn: ["迷你繡棚", "布章", "書籤", "洗禮禮物"],
+    priceAddonHkd: 60,
+    tier: "mini",
+    stitchHint: "satin stitch",
+    image: "/products/motif-mini-john316.png",
+  },
+  {
+    id: "mini-calm",
+    name: "迷你平靜海",
+    en: "Mini Calm Sea",
+    vibe: "小船同海浪鋪滿線，下面只標可4:39",
+    faith: "馬可福音 4:39",
+    bestOn: ["迷你繡棚", "布章", "袋角", "關懷禮物"],
+    priceAddonHkd: 50,
+    tier: "mini",
+    stitchHint: "satin stitch",
+    image: "/products/motif-mini-calm.png",
+  },
+  {
+    id: "mini-shepherd",
+    name: "迷你好牧人",
+    en: "Mini Shepherd",
+    vibe: "一牧人、一隻羊，細細一幅，下面只標詩23:1",
+    faith: "詩篇 23:1",
+    bestOn: ["迷你繡棚", "布章", "手帕角", "關懷禮物"],
+    priceAddonHkd: 50,
+    tier: "mini",
+    stitchHint: "satin stitch",
+    image: "/products/motif-mini-shepherd.png",
+  },
 ];
 
 export function getSimpleMotifs(): EmbroideryMotif[] {
@@ -320,6 +359,29 @@ export function getBotanicalMotifs(): EmbroideryMotif[] {
 
 export function getWordMotifs(): EmbroideryMotif[] {
   return embroideryMotifs.filter((m) => m.tier === "word");
+}
+
+export function getMiniMotifs(): EmbroideryMotif[] {
+  return embroideryMotifs.filter((m) => m.tier === "mini");
+}
+
+export function motifTierLabel(tier: MotifTier): string | null {
+  switch (tier) {
+    case "simple":
+      return null;
+    case "pattern":
+      return "Pattern";
+    case "botanical":
+      return "Botanical";
+    case "word":
+      return "Word";
+    case "mini":
+      return "Mini";
+    default: {
+      const exhaustive: never = tier;
+      return exhaustive;
+    }
+  }
 }
 
 /** 公仔繡喺實物上面嘅示範組合 */

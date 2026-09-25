@@ -32,7 +32,11 @@ export type ProductId =
   | "drink-motif-pack"
   | "lesson-kit"
   | "word-pack"
-  | "word-verse-bookmark";
+  | "word-verse-bookmark"
+  | "mini-john316"
+  | "mini-calm"
+  | "mini-shepherd"
+  | "mini-verse-pack";
 
 export type ProductStatus =
   | "available"
