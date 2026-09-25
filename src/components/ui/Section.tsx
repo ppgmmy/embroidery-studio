@@ -24,7 +24,7 @@ export function Section({
   className?: string;
 }) {
   return (
-    <section id={id} className={`py-24 md:py-32 ${className}`}>
+    <section id={id} className={`scroll-mt-24 py-16 md:py-20 ${className}`}>
       {children}
     </section>
   );
@@ -66,7 +66,7 @@ export function PageHeader({
   const eyeColor = tone === "dark" ? "text-gold-soft" : "text-gold";
 
   return (
-    <div className="max-w-2xl">
+    <div className="max-w-3xl">
       <p className={`font-latin text-sm tracking-[0.22em] uppercase ${eyeColor}`}>
         {eyebrow}
       </p>

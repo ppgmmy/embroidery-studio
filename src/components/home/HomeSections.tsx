@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProductCard } from "@/components/products/ProductCard";
+import { ArtworkFrame } from "@/components/ui/ArtworkFrame";
 import { Button } from "@/components/ui/Button";
 import { Container, Eyebrow, GoldRule, Section } from "@/components/ui/Section";
 import { pillars } from "@/data/catalog";
@@ -66,12 +67,25 @@ export function HomeSeriesPreview({
               可愛圖騰係主賣點；金繕裂紋只係可選概念。
             </p>
           </div>
-          <div className="mt-10">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {embroidery
-              .filter((p) => p.id.startsWith("motif"))
-              .slice(0, 4)
+              .filter((product) => product.image && product.priceHkd)
+              .slice(0, 6)
               .map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <article key={product.id} className="text-linen">
+                  <ArtworkFrame
+                    src={product.image!}
+                    alt={product.name}
+                    href={`/series/${product.slug}`}
+                    sizes="(max-width: 768px) 100vw, 30vw"
+                  />
+                  <h3 className="mt-3 font-display text-xl">
+                    <Link href={`/series/${product.slug}`} className="hover:text-gold-soft">
+                      {product.name}
+                    </Link>
+                  </h3>
+                  <p className="mt-1 text-sm text-gold-soft">HK${product.priceHkd}</p>
+                </article>
               ))}
           </div>
           <div className="mt-8">

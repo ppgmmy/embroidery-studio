@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { UpcycleQuote } from "@/components/embroidery/UpcycleQuote";
 import { SiteShell } from "@/components/layout/SiteShell";
+import { ArtworkFrame } from "@/components/ui/ArtworkFrame";
 import { Button } from "@/components/ui/Button";
 import { Container, PageHeader, Section } from "@/components/ui/Section";
 import { getEmbroideryProducts } from "@/data/catalog";
@@ -32,15 +32,12 @@ function MotifGrid({ motifs }: { motifs: EmbroideryMotif[] }) {
           className="border border-sage/30 bg-white/50 p-4"
         >
           {motif.image ? (
-            <div className="relative mb-4 aspect-square overflow-hidden bg-mist">
-              <Image
-                src={motif.image}
-                alt={motif.name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            </div>
+            <ArtworkFrame
+              src={motif.image}
+              alt={motif.name}
+              className="mb-4"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
           ) : null}
           <div className="flex items-baseline justify-between gap-2">
             <h3 className="font-display text-lg text-pine">{motif.name}</h3>
@@ -57,7 +54,9 @@ function MotifGrid({ motifs }: { motifs: EmbroideryMotif[] }) {
             </p>
           ) : null}
           <p className="mt-2 text-sm leading-6 text-ash">{motif.vibe}</p>
-          <p className="mt-3 text-xs text-moss">{motif.faith}</p>
+          <p className="mt-3 border-l-2 border-gold/50 pl-3 text-sm leading-7 text-pine">
+            {motif.faith}
+          </p>
           <p className="mt-2 text-xs text-ash/80">
             適合：{motif.bestOn.join(" · ")}
             {motif.priceAddonHkd > 0
@@ -104,18 +103,38 @@ export default function EmbroideryPage() {
             description="所有公仔都用線鋪滿成個面——緞面針填色，唔係淨係勾邊，亦唔係布貼。另有故事 pattern、花草針法、杯套聯乘；金繕裂紋可選。"
           />
 
-          <div className="relative mt-12 aspect-[4/3] overflow-hidden bg-mist md:aspect-[21/9]">
-            <Image
-              src="/products/motifs-set.png"
-              alt="信仰公仔圖騰布章組"
-              fill
-              className="object-cover"
-              sizes="100vw"
-              priority
-            />
-          </div>
+          <nav
+            aria-label="刺繡頁目錄"
+            className="sticky top-[4.25rem] z-20 -mx-5 mt-8 flex gap-2 overflow-x-auto border-y border-sage/25 bg-linen/95 px-5 py-3 backdrop-blur-md md:-mx-8 md:px-8"
+          >
+            {[
+              ["#minis", "迷你"],
+              ["#buddies", "公仔"],
+              ["#patterns", "故事"],
+              ["#words", "靚字"],
+              ["#botanical", "花草"],
+              ["#products", "產品"],
+            ].map(([href, label]) => (
+              <a
+                key={href}
+                href={href}
+                className="shrink-0 rounded-full border border-sage/40 px-3 py-1.5 text-sm text-pine hover:border-gold hover:text-moss"
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
 
-          <div className="mt-14">
+          <ArtworkFrame
+            src="/products/motifs-set.png"
+            alt="信仰公仔圖騰布章組"
+            ratio="video"
+            priority
+            sizes="100vw"
+            className="mt-8"
+          />
+
+          <div id="on-products" className="mt-14">
             <h2 className="font-display text-2xl text-pine md:text-3xl">
               繡喺產品上面
             </h2>
@@ -129,15 +148,12 @@ export default function EmbroideryPage() {
                   href={item.href}
                   className="group block overflow-hidden"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-mist">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
+                  <ArtworkFrame
+                    src={item.image}
+                    alt={item.title}
+                    ratio="wide"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                   <h3 className="mt-4 font-display text-xl text-pine">
                     {item.title}
                   </h3>
@@ -149,7 +165,7 @@ export default function EmbroideryPage() {
             </div>
           </div>
 
-          <div className="mt-20">
+          <div id="buddies" className="mt-16">
             <h2 className="font-display text-2xl text-pine md:text-3xl">
               基本公仔圖騰（刺繡製作）
             </h2>
@@ -159,7 +175,7 @@ export default function EmbroideryPage() {
             <MotifGrid motifs={simpleMotifs} />
           </div>
 
-          <div className="mt-20">
+          <div id="minis" className="mt-16">
             <h2 className="font-display text-2xl text-pine md:text-3xl">
               迷你經文刺繡
             </h2>
@@ -167,57 +183,50 @@ export default function EmbroideryPage() {
               掌心咁大，一個小景加一個短編號。約3:16
               係海、耶穌、約翰同白鴿。約翰福音 3:16：神愛世人，甚至將他的獨生子賜給他們，叫一切信他的，不至滅亡，反得永生。
             </p>
-            <div className="relative mx-auto mt-8 aspect-square max-w-xl overflow-hidden bg-linen">
-              <Image
-                src="/products/motif-mini-john316.png"
-                alt="迷你刺繡：海、耶穌、約翰、白鴿，下面約3:16"
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 576px"
-              />
-            </div>
+            <ArtworkFrame
+              src="/products/motif-mini-john316.png"
+              alt="迷你刺繡：海、耶穌、約翰、白鴿，下面約3:16"
+              sizes="(max-width: 768px) 100vw, 576px"
+              className="mx-auto mt-8 max-w-xl"
+            />
             <MotifGrid motifs={miniMotifs} />
           </div>
 
-          <div className="mt-20">
+          <div id="patterns" className="mt-16">
             <h2 className="font-display text-2xl text-pine md:text-3xl">
               進階故事 Pattern
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-ash">
               線密少少、場景感強——適合繡棚同袋面大圖。
             </p>
-            <div className="relative mt-8 aspect-[4/3] overflow-hidden bg-mist md:aspect-[21/9]">
-              <Image
-                src="/products/motifs-pattern-set.png"
-                alt="進階故事圖騰組"
-                fill
-                className="object-cover"
-                sizes="100vw"
-              />
-            </div>
+            <ArtworkFrame
+              src="/products/motifs-pattern-set.png"
+              alt="進階故事圖騰組"
+              ratio="video"
+              sizes="100vw"
+              className="mt-8"
+            />
             <MotifGrid motifs={patternMotifs} />
           </div>
 
-          <div className="mt-20">
+          <div id="words" className="mt-16">
             <h2 className="font-display text-2xl text-pine md:text-3xl">
               靚字書法 Word
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-ash">
               恩典、平安、喜樂、盼望、慈愛、信心——書法筆觸用緞面針＋梗針繡出，優雅又有份量。
             </p>
-            <div className="relative mt-8 aspect-[4/3] overflow-hidden bg-mist md:aspect-[21/9]">
-              <Image
-                src="/products/words-set.png"
-                alt="靚字祝福布章組"
-                fill
-                className="object-cover"
-                sizes="100vw"
-              />
-            </div>
+            <ArtworkFrame
+              src="/products/words-set.png"
+              alt="靚字祝福布章組"
+              ratio="video"
+              sizes="100vw"
+              className="mt-8"
+            />
             <MotifGrid motifs={wordMotifs} />
           </div>
 
-          <div className="mt-20">
+          <div id="botanical" className="mt-16">
             <h2 className="font-display text-2xl text-pine md:text-3xl">
               花草針法 Botanical
             </h2>
@@ -236,15 +245,12 @@ export default function EmbroideryPage() {
             </p>
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               <Link href="/series/cup-sleeve" className="group block">
-                <div className="relative aspect-[4/3] overflow-hidden bg-mist">
-                  <Image
-                    src="/products/product-cup-sleeve.png"
-                    alt="極簡外帶杯套"
-                    fill
-                    className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
+                <ArtworkFrame
+                  src="/products/product-cup-sleeve.png"
+                  alt="極簡外帶杯套"
+                  ratio="wide"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
                 <h3 className="mt-4 font-display text-xl text-pine">
                   極簡外帶杯套
                 </h3>
@@ -253,15 +259,12 @@ export default function EmbroideryPage() {
                 </p>
               </Link>
               <Link href="/series/drink-motif-pack" className="group block">
-                <div className="relative aspect-[4/3] overflow-hidden bg-mist">
-                  <Image
-                    src="/products/motifs-drink-set.png"
-                    alt="咖啡廳飲品圖騰組"
-                    fill
-                    className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
+                <ArtworkFrame
+                  src="/products/motifs-drink-set.png"
+                  alt="咖啡廳飲品圖騰組"
+                  ratio="wide"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
                 <h3 className="mt-4 font-display text-xl text-pine">
                   咖啡廳飲品圖騰組
                 </h3>
@@ -272,32 +275,26 @@ export default function EmbroideryPage() {
             </div>
           </div>
 
-          <div className="mt-20">
+          <div id="products" className="mt-16">
             <h2 className="font-display text-2xl text-pine md:text-3xl">
               圖騰產品
             </h2>
             <div className="mt-8 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {motifProducts.map((product) => (
                 <article key={product.id} className="flex flex-col">
-                  <Link
-                    href={`/series/${product.slug}`}
-                    className="relative aspect-square overflow-hidden bg-mist"
-                  >
-                    {product.image ? (
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                    ) : null}
-                  </Link>
+                  {product.image ? (
+                    <ArtworkFrame
+                      src={product.image}
+                      alt={product.name}
+                      href={`/series/${product.slug}`}
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  ) : null}
                   <h3 className="mt-4 font-display text-xl text-pine">
                     <Link href={`/series/${product.slug}`}>{product.name}</Link>
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-ash">
-                    {product.description}
+                  <p className="mt-2 line-clamp-3 text-sm leading-6 text-ash">
+                    {product.tagline}
                   </p>
                   <p className="mt-3 font-display text-xl text-pine">
                     HK${product.priceHkd}
@@ -314,20 +311,14 @@ export default function EmbroideryPage() {
             <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {otherProducts.map((product) => (
                 <article key={product.id}>
-                  <Link
-                    href={`/series/${product.slug}`}
-                    className="relative block aspect-square overflow-hidden bg-mist"
-                  >
-                    {product.image ? (
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                    ) : null}
-                  </Link>
+                  {product.image ? (
+                    <ArtworkFrame
+                      src={product.image}
+                      alt={product.name}
+                      href={`/series/${product.slug}`}
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  ) : null}
                   <h3 className="mt-3 font-display text-lg text-pine">
                     <Link href={`/series/${product.slug}`}>{product.name}</Link>
                   </h3>

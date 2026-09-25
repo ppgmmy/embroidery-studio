@@ -57,12 +57,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <div className="mt-6 grid gap-12 md:grid-cols-[1.05fr_1fr]">
             <div>
               {product.image ? (
-                <div className="relative mb-6 aspect-square overflow-hidden bg-pine">
+                <div className="relative mb-6 aspect-square overflow-hidden bg-[#e7efe9]">
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-cover"
+                    className="object-contain p-4"
                     sizes="(max-width: 768px) 100vw, 50vw"
                     priority
                   />

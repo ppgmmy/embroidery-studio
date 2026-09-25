@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { SiteShell } from "@/components/layout/SiteShell";
+import { ArtworkFrame } from "@/components/ui/ArtworkFrame";
 import { Button } from "@/components/ui/Button";
 import { Container, PageHeader, Section } from "@/components/ui/Section";
 import { getShopPreviewProducts } from "@/data/catalog";
@@ -28,21 +28,14 @@ export default function ShopPreviewPage() {
           <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {items.map((product) => (
               <article key={product.id} className="flex flex-col">
-                <Link
-                  href={`/series/${product.slug}`}
-                  className="relative aspect-square overflow-hidden bg-mist"
-                >
-                  {product.image ? (
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      className="object-cover transition duration-500 hover:scale-[1.02]"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      priority
-                    />
-                  ) : null}
-                </Link>
+                {product.image ? (
+                  <ArtworkFrame
+                    src={product.image}
+                    alt={product.name}
+                    href={`/series/${product.slug}`}
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                ) : null}
                 <div className="mt-5 flex flex-1 flex-col">
                   <p className="font-latin text-xs tracking-[0.2em] text-gold uppercase">
                     {product.en}
@@ -80,8 +73,8 @@ export default function ShopPreviewPage() {
           <div className="mt-16 max-w-2xl border border-sage/30 bg-mist/40 p-6 md:p-8">
             <h3 className="font-display text-xl text-pine">你而家睇到嘅係</h3>
             <ul className="mt-4 space-y-2 text-sm leading-7 text-ash">
-              <li>· 三件「第一波」貨：布章、遮袋、安息巾</li>
-              <li>· 每件有相片＋一句故事＋建議價錢</li>
+              <li>· 刺繡、織繕同概念器物都有畫面同建議價錢</li>
+              <li>· 每件有相片、說明同經文</li>
               <li>· 未有真實付款掣（避免未備貨就收錢）</li>
             </ul>
             <div className="mt-6 flex flex-wrap gap-4">

@@ -3,24 +3,24 @@ import { footerNav, siteConfig } from "@/lib/site";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-sage/30 bg-linen px-6 py-12 md:px-8">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 md:flex-row md:items-start md:justify-between">
+    <footer className="border-t border-sage/30 bg-linen px-5 py-14 md:px-8">
+      <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.4fr_1fr_auto] md:items-start">
         <div className="max-w-sm">
           <p className="font-display text-lg tracking-[0.12em] text-pine">
             {siteConfig.brandZh}
           </p>
           <p className="mt-1 font-latin text-sm italic text-ash">
-            {siteConfig.brandEn} — mend what was broken, steward what was given.
+            {siteConfig.brandEn}
           </p>
-          <p className="mt-4 text-sm leading-7 text-ash/90">{siteConfig.tagline}</p>
+          <p className="mt-4 text-sm leading-7 text-ash">{siteConfig.description}</p>
           <a
             href={`mailto:${siteConfig.email}`}
-            className="mt-4 inline-block text-sm text-moss transition hover:text-pine"
+            className="mt-4 inline-block text-sm text-moss underline-offset-4 hover:text-pine hover:underline"
           >
             {siteConfig.email}
           </a>
         </div>
-        <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ash" aria-label="頁尾選單">
+        <nav className="grid grid-cols-2 gap-x-6 gap-y-3 text-sm text-ash" aria-label="頁尾選單">
           {footerNav.map((item) => (
             <Link
               key={item.href}
@@ -31,9 +31,10 @@ export function SiteFooter() {
             </Link>
           ))}
         </nav>
-        <p className="text-xs leading-6 text-ash/80 md:max-w-[12rem] md:text-right">
+        <p className="text-xs leading-6 text-ash/80 md:text-right">
           © {new Date().getFullYear()} {siteConfig.brandZh}
-          <br className="hidden md:block" /> {siteConfig.brandEn}
+          <br />
+          {siteConfig.brandEn}
         </p>
       </div>
     </footer>

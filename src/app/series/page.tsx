@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { ProductCard } from "@/components/products/ProductCard";
+import { ArtworkFrame } from "@/components/ui/ArtworkFrame";
 import { Button } from "@/components/ui/Button";
 import { Container, Eyebrow, PageHeader, Section } from "@/components/ui/Section";
 import { getEmbroideryProducts, getProductsByLine } from "@/data/catalog";
@@ -35,9 +37,29 @@ export default function SeriesPage() {
             <p className="mt-4 max-w-2xl text-sm leading-7 text-sage">
               十字架、白鴿、彩虹、小聖經，以至進階故事 pattern。金色裂紋可選、唔係必須。
             </p>
-            <div className="mt-8">
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {embroidery.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <article key={product.id}>
+                  {product.image ? (
+                    <ArtworkFrame
+                      src={product.image}
+                      alt={product.name}
+                      href={`/series/${product.slug}`}
+                      sizes="(max-width: 768px) 100vw, 30vw"
+                    />
+                  ) : null}
+                  <h3 className="mt-3 font-display text-xl">
+                    <Link href={`/series/${product.slug}`} className="hover:text-gold-soft">
+                      {product.name}
+                    </Link>
+                  </h3>
+                  <p className="mt-1 text-sm text-sage">{product.tagline}</p>
+                  {product.priceHkd ? (
+                    <p className="mt-2 font-display text-lg text-gold-soft">
+                      HK${product.priceHkd}
+                    </p>
+                  ) : null}
+                </article>
               ))}
             </div>
             <div className="mt-8">

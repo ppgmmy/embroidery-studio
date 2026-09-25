@@ -16,6 +16,13 @@ export function SiteHeader({ tone = "solid" }: { tone?: HeaderTone }) {
     setOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   const shell = isHero
     ? "absolute inset-x-0 top-0 z-30 text-mist/85"
     : "sticky top-0 z-30 border-b border-sage/25 bg-linen/90 text-ash backdrop-blur-md";
@@ -28,7 +35,7 @@ export function SiteHeader({ tone = "solid" }: { tone?: HeaderTone }) {
 
   return (
     <header className={shell}>
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 md:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5 md:px-8">
         <Link
           href="/"
           className={`font-display text-lg tracking-[0.12em] transition md:text-xl ${brand}`}
@@ -37,7 +44,7 @@ export function SiteHeader({ tone = "solid" }: { tone?: HeaderTone }) {
           {siteConfig.brandZh}
         </Link>
 
-        <nav className="hidden items-center gap-7 text-sm md:flex" aria-label="主選單">
+        <nav className="hidden items-center gap-5 text-sm lg:gap-7 md:flex" aria-label="主選單">
           {mainNav.map((item) => {
             const active =
               pathname === item.href ||
@@ -79,7 +86,7 @@ export function SiteHeader({ tone = "solid" }: { tone?: HeaderTone }) {
 
         <button
           type="button"
-          className={`md:hidden text-sm tracking-wide transition ${isHero ? "text-linen" : "text-pine"}`}
+          className={`inline-flex min-h-11 min-w-11 items-center justify-center px-2 text-sm tracking-wide transition md:hidden ${isHero ? "text-linen" : "text-pine"}`}
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "關閉選單" : "開啟選單"}
@@ -103,9 +110,9 @@ export function SiteHeader({ tone = "solid" }: { tone?: HeaderTone }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`py-2.5 text-sm transition ${
+                  className={`min-h-11 py-3 text-base transition ${
                     isHero ? "text-linen" : "text-pine"
-                  } ${active ? "text-gold-soft" : ""}`}
+                  } ${active ? "text-gold" : ""}`}
                   aria-current={active ? "page" : undefined}
                   onClick={() => setOpen(false)}
                 >

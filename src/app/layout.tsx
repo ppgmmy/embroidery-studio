@@ -26,7 +26,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kintsugi.studio"),
+  metadataBase: new URL("https://faith-embroidery.vercel.app"),
   title: {
     default: `${siteConfig.brandZh} ${siteConfig.brandEn}｜${siteConfig.tagline.replace("。", "")}`,
     template: `%s｜${siteConfig.brandZh}`,

@@ -16,7 +16,7 @@ export const mainNav: NavItem[] = [
   { href: "/embroidery/lessons", label: "教學" },
   { href: "/series", label: "系列" },
   { href: "/shop", label: "開賣預覽" },
-  { href: "/contact", label: "預約系列冊", accent: true },
+  { href: "/contact", label: "聯絡", accent: true },
 ];
 
 export const footerNav: NavItem[] = [

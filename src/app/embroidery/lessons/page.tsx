@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { SiteShell } from "@/components/layout/SiteShell";
+import { ArtworkFrame } from "@/components/ui/ArtworkFrame";
 import { Button } from "@/components/ui/Button";
 import { Container, PageHeader, Section } from "@/components/ui/Section";
 import { embroideryLessons } from "@/data/lessons";
@@ -23,16 +23,14 @@ export default function LessonsIndexPage() {
             description="所有公仔都用刺繡形式製作——畫風一樣得意，但係線同針腳，唔係布貼。由入門緞面針到花草長短針，一步步學。"
           />
 
-          <div className="relative mt-12 aspect-[4/3] overflow-hidden bg-mist md:aspect-[21/9]">
-            <Image
-              src="/products/lessons-hero.png"
-              alt="刺繡教學材料與公仔布章"
-              fill
-              className="object-cover"
-              sizes="100vw"
-              priority
-            />
-          </div>
+          <ArtworkFrame
+            src="/products/lessons-hero.png"
+            alt="刺繡教學材料與公仔布章"
+            ratio="video"
+            priority
+            sizes="100vw"
+            className="mt-12"
+          />
 
           <p className="mt-10 max-w-2xl text-sm leading-7 text-ash">
             每課對應一個圖騰：標明針法（satin／long &amp; short／french
@@ -42,18 +40,12 @@ export default function LessonsIndexPage() {
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {embroideryLessons.map((lesson) => (
               <article key={lesson.id} className="flex flex-col">
-                <Link
+                <ArtworkFrame
+                  src={lesson.image}
+                  alt={lesson.title}
                   href={`/embroidery/lessons/${lesson.id}`}
-                  className="relative aspect-square overflow-hidden bg-mist"
-                >
-                  <Image
-                    src={lesson.image}
-                    alt={lesson.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </Link>
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
                 <p className="mt-4 font-latin text-xs tracking-[0.2em] text-gold uppercase">
                   Lesson {String(lesson.lessonNo).padStart(2, "0")} ·{" "}
                   {lesson.stitch}

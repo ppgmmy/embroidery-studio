@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
-import { KintsugiBowl } from "@/components/KintsugiBowl";
 import { siteConfig } from "@/lib/site";
 
 export function HomeHero() {
@@ -37,9 +37,18 @@ export function HomeHero() {
             </Button>
           </div>
         </div>
-        <div className="animate-drift relative flex items-center justify-center md:justify-end">
+        <div className="relative flex items-center justify-center md:justify-end">
           <div className="absolute h-64 w-64 rounded-full bg-gold/15 blur-3xl md:h-80 md:w-80" />
-          <KintsugiBowl className="relative w-[min(88vw,420px)] drop-shadow-2xl" />
+          <div className="relative aspect-square w-[min(88vw,420px)] overflow-hidden rounded-full border border-gold/35 bg-linen/10 shadow-2xl">
+            <Image
+              src="/products/motif-mini-john316.png"
+              alt="迷你刺繡：海、耶穌、約翰、白鴿，下面約3:16"
+              fill
+              priority
+              sizes="420px"
+              className="object-cover"
+            />
+          </div>
         </div>
       </div>
       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-linen to-transparent" />

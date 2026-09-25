@@ -56,12 +56,12 @@ export default async function LessonDetailPage({ params }: Props) {
           <p className="mt-6 text-base leading-8 text-ash">{lesson.summary}</p>
           <p className="mt-3 text-sm text-moss">{lesson.faith}</p>
 
-          <div className="relative mt-10 aspect-square overflow-hidden bg-mist md:aspect-[4/3]">
+          <div className="relative mt-10 aspect-square overflow-hidden bg-[#e7efe9]">
             <Image
               src={lesson.image}
               alt={lesson.title}
               fill
-              className="object-cover"
+              className="object-contain p-4"
               sizes="(max-width: 768px) 100vw, 768px"
               priority
             />

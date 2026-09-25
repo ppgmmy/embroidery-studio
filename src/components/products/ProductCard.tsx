@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { statusLabel } from "@/data/catalog";
 import { lineLabels } from "@/lib/site";
@@ -6,10 +7,25 @@ import type { Product } from "@/types";
 export function ProductCard({ product }: { product: Product }) {
   return (
     <article className="group border-t border-moss/50 py-10 transition duration-300 md:py-12">
-      <div className="grid gap-6 md:grid-cols-[6rem_1fr_auto] md:items-start md:gap-10">
-        <p className="font-latin text-3xl text-gold/70 tabular-nums transition duration-300 group-hover:text-gold-soft md:text-4xl">
-          {product.series}
-        </p>
+      <div className="grid gap-6 md:grid-cols-[7.5rem_1fr_auto] md:items-start md:gap-8">
+        {product.image ? (
+          <Link
+            href={`/series/${product.slug}`}
+            className="relative block aspect-square overflow-hidden bg-linen/15"
+          >
+            <Image
+              src={product.image}
+              alt=""
+              fill
+              sizes="120px"
+              className="object-contain p-1.5"
+            />
+          </Link>
+        ) : (
+          <p className="font-latin text-3xl text-gold/70 tabular-nums md:text-4xl">
+            {product.series}
+          </p>
+        )}
         <div>
           <p className="font-latin text-sm tracking-[0.18em] text-sage italic">
             {product.en}
@@ -25,7 +41,7 @@ export function ProductCard({ product }: { product: Product }) {
           <p className="mt-3 font-display text-lg text-gold-soft">
             {product.tagline}
           </p>
-          <p className="mt-4 max-w-2xl text-[15px] leading-7 text-mist/85">
+          <p className="mt-4 line-clamp-3 max-w-2xl text-[15px] leading-7 text-mist/85">
             {product.description}
           </p>
         </div>
