@@ -26,6 +26,13 @@ npm run dev
 - 刺繡主頁：http://localhost:3000/embroidery
 - 教學課：http://localhost:3000/embroidery/lessons
 
+## 正式站（手機可開）
+
+- 刺繡主頁：https://faith-embroidery.vercel.app/embroidery
+- 教學課：https://faith-embroidery.vercel.app/embroidery/lessons
+
+> 注意：`embroidery-studio.vercel.app` 係別個專案（RE-FORGE），唔係本站。
+
 ## 電腦 + 電話一齊改
 
 1. GitHub repo：`ppgmmy/embroidery-studio`（推上 main 後）
