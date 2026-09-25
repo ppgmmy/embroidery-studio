@@ -100,7 +100,7 @@ export default function EmbroideryPage() {
           <PageHeader
             eyebrow="Embroidered Buddies · Tutorials"
             title="信仰公仔刺繡"
-            description="所有公仔都用刺繡形式製作——畫風一樣圓潤得意，但係緞面針、結粒、梗針繡出嚟，唔係布貼。另有故事 pattern、花草針法、杯套聯乘；金繕裂紋可選。"
+            description="所有公仔都用線鋪滿成個面——緞面針填色，唔係淨係勾邊，亦唔係布貼。另有故事 pattern、花草針法、杯套聯乘；金繕裂紋可選。"
           />
 
           <div className="relative mt-12 aspect-[4/3] overflow-hidden bg-mist md:aspect-[21/9]">
@@ -153,7 +153,7 @@ export default function EmbroideryPage() {
               基本公仔圖騰（刺繡製作）
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-ash">
-              全部用針線繡——緞面針填色、結粒五官。畫風保持公仔感；可跟教學課一手練習。
+              成個公仔都係線鋪滿——緞面針填色、結粒做細節。畫風保持圓潤；可跟教學課一手練習。
             </p>
             <MotifGrid motifs={simpleMotifs} />
           </div>
@@ -201,7 +201,7 @@ export default function EmbroideryPage() {
               花草針法 Botanical
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-7 text-ash">
-              長短針向日葵／野玫瑰、緞面針青色小花——經典課感覺，適合教材、繡棚、手作體驗。
+              花瓣、葉同果實都用線鋪滿成個面（緞面針、長短針、結粒）——同真實繡棚一樣，適合教材、掛牆、手作體驗。
             </p>
             <MotifGrid motifs={botanicalMotifs} />
           </div>
